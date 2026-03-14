@@ -50,7 +50,7 @@ npm install -g pm2
 ### 起動
 
 ```bash
-pm2 start yamame.js --name yamame-honeypot
+pm2 start yamame.js --name yamame
 ```
 
 ### OS 起動時に自動開始
@@ -64,11 +64,11 @@ pm2 save
 ### 管理コマンド
 
 ```bash
-pm2 status          # ステータス確認
-pm2 logs yamame-honeypot   # ログ表示
-pm2 restart yamame-honeypot # リスタート
-pm2 stop yamame-honeypot    # 停止
-pm2 delete yamame-honeypot  # 削除
+pm2 status         # ステータス確認
+pm2 logs yamame    # ログ表示
+pm2 restart yamame # リスタート
+pm2 stop yamame    # 停止
+pm2 delete yamame  # 削除
 ```
 
 ### PM2 Web モニタリング (オプション)
