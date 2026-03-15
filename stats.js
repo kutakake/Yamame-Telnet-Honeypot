@@ -26,7 +26,35 @@ const ipStats = Object.entries(commandData).map(([ip, commands]) => ({
 // コマンド数で降順ソート
 ipStats.sort((a, b) => b.count - a.count);
 
-console.log('=== コマンド入力数ランキング ===\n');
+// コマンドごとの出現回数をカウント
+const commandCounts = {};
+Object.values(commandData).forEach(commands => {
+    commands.forEach(cmd => {
+        const command = cmd.command;
+        if (commandCounts[command]) {
+            commandCounts[command]++;
+        } else {
+            commandCounts[command] = 1;
+        }
+    });
+});
+
+// コマンドを出現回数で降順ソート
+const sortedCommands = Object.entries(commandCounts)
+    .map(([cmd, count]) => ({ command: cmd, count }))
+    .sort((a, b) => b.count - a.count);
+
+console.log('=== 入力されたコマンドランキング ===\n');
+
+if (sortedCommands.length === 0) {
+    console.log('データがありません\n');
+} else {
+    sortedCommands.forEach((item, index) => {
+        console.log(`${index + 1}. "${item.command}": ${item.count} 回`);
+    });
+}
+
+console.log('\n=== IP アドレス別コマンド入力数ランキング ===\n');
 
 if (ipStats.length === 0 || ipStats[0].count === 0) {
     console.log('データがありません\n');
